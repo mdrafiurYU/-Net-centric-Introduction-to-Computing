@@ -1,0 +1,41 @@
+body
+{
+  font-family: sans-serif;
+}
+
+h1
+{
+  color: blue;
+}
+
+.address
+{
+   font-style: italic;
+}
+
+#contact
+{
+  font-weight: bold;
+  font-style: italic;
+}
+
+#picture
+{
+  width: 45%;
+}
+
+h2
+{
+  margin-top: 4%;
+  text-align: center;
+  color: purple;
+  background-color: #cccccc;
+  font-variant: small-caps;
+  letter-spacing: 4px;
+}
+
+#now
+{
+  font-size: x-small;
+  color: green;
+}
