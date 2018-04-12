@@ -1,0 +1,39 @@
+protected void resize(int newCap) {
+		super.resize(newCap);
+		q = selectSecondaryHashPrime(newCap);
+	}
+
+protected int findSlot(int h1, K k) {
+		int avail = -1; // no slot available (thus far)
+		int j = h1; // index while scanning table
+		int i = 0;
+		int h2 = Math.abs(secondaryHashValue(k));
+
+		do {
+			totalProbes++;
+			if (isAvailable(j)) { // may be either empty or defunct
+				if (avail == -1) {
+					avail = j; // this is the first available slot!
+				}
+				if (table[j] == null) {
+					break; // if empty, search fails immediately
+				}
+			} else if (table[j].getKey().equals(k)) {
+				return j; // successful match
+			}
+			j = (h1 + (i++ * h2)) % capacity; // keep looking (DH)
+
+		} while (table[j] != null); // stop if we can't find a space
+
+		if (isAvailable(j)) { // may be either empty or defunct
+			if (avail == -1) {
+				avail = j; // this is the first available slot!
+			}
+		}
+		return -(avail + 1);
+	}
+
+
+	private int secondaryHashValue(K key) {
+		return q - (Math.abs(key.hashCode()) % q);
+	}
